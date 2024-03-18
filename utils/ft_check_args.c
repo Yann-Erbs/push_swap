@@ -1,34 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_check_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 12:38:48 by yerbs             #+#    #+#             */
-/*   Updated: 2024/03/18 13:41:19 by yerbs            ###   ########.fr       */
+/*   Created: 2024/03/18 13:23:59 by yerbs             #+#    #+#             */
+/*   Updated: 2024/03/18 13:42:51 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int main(int ac, char **av)
+static int	ft_isnum(char *num)
 {
-	t_stack	**stack_a;
-	t_stack	**stack_b;
-	char	**args;
-	
-	if (ac < 2)
-		return (ft_error());
-	else if (ac == 2)
-		args = ft_split(av[1], ' ');
-	else
-		args = av;
-	if (!ft_check_args(args, ac))
-		return (ft_error());
-	stack_a = (t_stack **)malloc(sizeof(t_stack));
-	stack_b = (t_stack **)malloc(sizeof(t_stack));
-	*stack_a = NULL;
-	*stack_b = NULL;
-	return(0);	
+	int	i;
+
+	i = 0;
+	if (num[0] == '-')
+		i++;
+	while (num[i])
+	{
+		if (ft_isdigit(num[i]))
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+int		ft_check_args(char **args, int ac)
+{
+	int	i;
+	long	tmp;
+
+	i = 0;
+	if (ac != 2)
+		i = 1;
+	while (args[i])
+	{
+		tmp = ft_atoi(args[i]);
+		if (!ft_isnum(args[i]))
+			return (0);
+		if (tmp < -2147483648 || tmp > 2147483647)
+			return (0);
+		i++;
+	}
+	return (1);
 }

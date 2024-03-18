@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 15:36:28 by yerbs             #+#    #+#             */
-/*   Updated: 2024/03/18 13:42:12 by yerbs            ###   ########.fr       */
+/*   Created: 2023/10/18 10:51:23 by yerbs             #+#    #+#             */
+/*   Updated: 2024/03/18 12:36:04 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/libft.h"
 
-# include "libft.h"
-
-typedef struct s_stack
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int				*value;
-	int				*index;
-	struct s_stack	*next;
-}					t_stack;
-
-int		ft_error(void);
-static int	ft_isnum(char *num);
-int		ft_check_args(char **args, int ac);
-
-#endif
+	if (!src && !dest)
+		return (NULL);
+	if (dest > src)
+		while (n--)
+			*((char *) dest + n) = *((char *) src + n);
+	else
+		ft_memcpy(dest, src, n);
+	return ((char *) dest);
+}

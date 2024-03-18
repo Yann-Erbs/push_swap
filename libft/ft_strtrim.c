@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 15:36:28 by yerbs             #+#    #+#             */
-/*   Updated: 2024/03/18 13:42:12 by yerbs            ###   ########.fr       */
+/*   Created: 2023/10/25 07:48:56 by yerbs             #+#    #+#             */
+/*   Updated: 2024/03/18 12:36:48 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/libft.h"
 
-# include "libft.h"
-
-typedef struct s_stack
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int				*value;
-	int				*index;
-	struct s_stack	*next;
-}					t_stack;
+	size_t	i;
 
-int		ft_error(void);
-static int	ft_isnum(char *num);
-int		ft_check_args(char **args, int ac);
-
-#endif
+	if (!s1)
+		return (NULL);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	i = ft_strlen(s1);
+	while (i && ft_strchr(set, s1[i]))
+		i--;
+	return (ft_substr(s1, 0, i + 1));
+}

@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 15:36:28 by yerbs             #+#    #+#             */
-/*   Updated: 2024/03/18 13:42:12 by yerbs            ###   ########.fr       */
+/*   Created: 2023/10/17 10:09:06 by yerbs             #+#    #+#             */
+/*   Updated: 2024/03/18 12:35:31 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/libft.h"
 
-# include "libft.h"
-
-typedef struct s_stack
+int	ft_isalpha(int c)
 {
-	int				*value;
-	int				*index;
-	struct s_stack	*next;
-}					t_stack;
-
-int		ft_error(void);
-static int	ft_isnum(char *num);
-int		ft_check_args(char **args, int ac);
-
-#endif
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
+}

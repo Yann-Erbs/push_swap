@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 15:36:28 by yerbs             #+#    #+#             */
-/*   Updated: 2024/03/18 13:42:12 by yerbs            ###   ########.fr       */
+/*   Created: 2023/10/20 16:34:47 by yerbs             #+#    #+#             */
+/*   Updated: 2024/03/18 12:35:58 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/libft.h"
 
-# include "libft.h"
-
-typedef struct s_stack
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int				*value;
-	int				*index;
-	struct s_stack	*next;
-}					t_stack;
+	unsigned const char		*t1;
+	unsigned const char		*t2;
 
-int		ft_error(void);
-static int	ft_isnum(char *num);
-int		ft_check_args(char **args, int ac);
-
-#endif
+	t1 = (unsigned const char *)s1;
+	t2 = (unsigned const char *)s2;
+	while (n)
+	{
+		if (*t1 != *t2)
+			return (*t1 - *t2);
+		t1++;
+		t2++;
+		n--;
+	}
+	return (0);
+}

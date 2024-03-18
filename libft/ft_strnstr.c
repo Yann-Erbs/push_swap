@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 15:36:28 by yerbs             #+#    #+#             */
-/*   Updated: 2024/03/18 13:42:12 by yerbs            ###   ########.fr       */
+/*   Created: 2023/10/20 13:24:18 by yerbs             #+#    #+#             */
+/*   Updated: 2024/03/18 12:36:43 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/libft.h"
 
-# include "libft.h"
-
-typedef struct s_stack
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int				*value;
-	int				*index;
-	struct s_stack	*next;
-}					t_stack;
+	size_t	i;
 
-int		ft_error(void);
-static int	ft_isnum(char *num);
-int		ft_check_args(char **args, int ac);
-
-#endif
+	i = 0;
+	if (!big && !len)
+		return (NULL);
+	if (!*little)
+		return ((char *)big);
+	while (big[i] && (i + ft_strlen(little)) <= len)
+	{
+		if (ft_strncmp(big + i, little, ft_strlen(little)) == 0)
+			return ((char *) &big[i]);
+		i++;
+	}
+	return (NULL);
+}

@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 15:36:28 by yerbs             #+#    #+#             */
-/*   Updated: 2024/03/18 13:42:12 by yerbs            ###   ########.fr       */
+/*   Created: 2023/10/25 09:25:43 by yerbs             #+#    #+#             */
+/*   Updated: 2024/03/18 12:36:38 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/libft.h"
 
-# include "libft.h"
-
-typedef struct s_stack
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int				*value;
-	int				*index;
-	struct s_stack	*next;
-}					t_stack;
+	char	*s2;
+	size_t	i;
 
-int		ft_error(void);
-static int	ft_isnum(char *num);
-int		ft_check_args(char **args, int ac);
-
-#endif
+	if (!s)
+		return (NULL);
+	i = 0;
+	s2 = ft_calloc(ft_strlen(s) + 1, sizeof(char));
+	if (!s2)
+		return (NULL);
+	while (s[i])
+	{
+		s2[i] = f(i, s[i]);
+		i++;
+	}
+	return (s2);
+}
