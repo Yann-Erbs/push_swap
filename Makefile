@@ -6,7 +6,7 @@
 #    By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 15:32:26 by yerbs             #+#    #+#              #
-#    Updated: 2024/03/19 14:56:47 by yerbs            ###   ########.fr        #
+#    Updated: 2024/03/19 16:50:53 by yerbs            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,13 +29,32 @@ NAME = push_swap
 all: ps ${NAME}
 
 ps:
-	@printf "${PINK} --- PUSH_SWAP ---\n"
+	@printf "${PINK} --- PUSH-SWAP ---\n"
 
 
 ${OBJDIR}%.o: %.c
 	@mkdir -p ${@D}
 	@printf "\r${GREEN}Compilation of $(CYAN)push_swap${RESET}..."
 	@${CC} ${CFLAGS} -c $< -o $@
+	${call progress_bar}
+
+
+
+define color_progress
+$(if $(shell test $(1) -gt 66 && echo true),$(GREEN),$(if $(shell test $(1) -gt 33 && echo true),$(YELLOW),$(RED)))
+endef
+
+define progress_bar
+@$(eval COMPILED=$(shell echo $$(($(COMPILED)+1))))
+@$(eval PROGRESS_PERCENT=$(shell echo $$((($(COMPILED) * 100) / $(TOTAL)))))
+@printf "$(CYAN)❘"
+@for number in $$(seq 1 $(COMPILED)); do printf "$(call color_progress,$(PROGRESS_PERCENT))█"; done
+@for number in $$(seq 1 $$(($(TOTAL) - $(COMPILED)))); do printf "$(GRAY)•"; done
+@printf "$(CYAN)❘ $(COMPILED)/$(TOTAL)$(END)\r"
+endef
+
+TOTAL := ${words ${SRC}}
+COMPILED := 0
 
 ${NAME}: ${OBJS}
 	@echo "\n$(CYAN)${NAME}$(RESET) $(GREEN)has been created $(RESET)✔️\n"
@@ -62,7 +81,8 @@ re: fclean all
 
 RED 	:= \033[1;31m
 GREEN 	:= \033[1;32m
-YELLOW	:= \033[1;33m
-PINK 	:= \033[4;35m
+YELLOW 	:= \033[1;33m
+PINK	:= \033[4;35m
 CYAN 	:= \033[1;36m
 RESET 	:= \033[0m
+END 	:= \033[0m
