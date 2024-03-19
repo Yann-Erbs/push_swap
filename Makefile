@@ -6,7 +6,7 @@
 #    By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 15:32:26 by yerbs             #+#    #+#              #
-#    Updated: 2024/03/19 16:50:53 by yerbs            ###   ########.fr        #
+#    Updated: 2024/03/19 17:00:11 by yerbs            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ define progress_bar
 @printf "$(CYAN)❘"
 @for number in $$(seq 1 $(COMPILED)); do printf "$(call color_progress,$(PROGRESS_PERCENT))█"; done
 @for number in $$(seq 1 $$(($(TOTAL) - $(COMPILED)))); do printf "$(GRAY)•"; done
-@printf "$(CYAN)❘ $(COMPILED)/$(TOTAL)$(END)\r"
+@printf "$(CYAN)❘ $(COMPILED)/$(TOTAL)$(END) ✔️\r"
 endef
 
 TOTAL := ${words ${SRC}}
