@@ -1,50 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_args.c                                    :+:      :+:    :+:   */
+/*   ft_is_sorted.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 13:23:59 by yerbs             #+#    #+#             */
-/*   Updated: 2024/03/18 17:03:21 by yerbs            ###   ########.fr       */
+/*   Created: 2024/03/19 08:43:44 by yerbs             #+#    #+#             */
+/*   Updated: 2024/03/19 08:50:21 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	ft_isnum(char *num)
+int	ft_is_sorted(t_stack **stack)
 {
-	int	i;
+	t_stack	*head;
 
-	i = 0;
-	if (num[0] == '-')
-		i++;
-	while (num[i])
+	head = *stack;
+	while(head && head->next)
 	{
-		if (ft_isdigit(num[i]))
-			i++;
-		else
+		if (head->value > head->next->value)
 			return (0);
-	}
-	return (1);
-}
-
-int		ft_check_args(char **args, int ac)
-{
-	int	i;
-	long	tmp;
-
-	i = 0;
-	if (ac != 2)
-		i = 1;
-	while (args[i])
-	{
-		tmp = ft_atoi(args[i]);
-		if (!ft_isnum(args[i]))
-			return (0);
-		if (tmp < -2147483648 || tmp > 2147483647)
-			return (0);
-		i++;
+		head = head->next;
 	}
 	return (1);
 }
