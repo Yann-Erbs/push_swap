@@ -6,11 +6,13 @@
 #    By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 15:32:26 by yerbs             #+#    #+#              #
-#    Updated: 2024/03/19 17:00:11 by yerbs            ###   ########.fr        #
+#    Updated: 2024/03/20 10:19:45 by yerbs            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC =   srcs/main.c \
+		srcs/instructions.c \
+		srcs/little_instructions.c \
 		utils/ft_error.c \
 		utils/ft_check_args.c \
 		utils/t_stack.c \

@@ -6,7 +6,7 @@
 /*   By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:38:48 by yerbs             #+#    #+#             */
-/*   Updated: 2024/03/19 10:11:00 by yerbs            ###   ########.fr       */
+/*   Updated: 2024/03/20 09:23:13 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,20 @@ int main(int ac, char **av)
 	*stack_a = NULL;
 	*stack_b = NULL;
 	ft_init_stack(stack_a, ac, args);
+	if (ft_is_sorted(stack_a))
+		ft_putstr_fd("The stack is already sorted\n", 1);
+	printf("Stack A before\n");
 	printList(*stack_a);
-	if (!ft_is_sorted(stack_a))
-		printf("Cest pas trie");
-	else
-		printf("Cest trie");
-	
+	//printf("Stack B before\n");
+	//printList(*stack_b);
+	printf("\n");
+	ft_reverse_rotate(stack_a);
+	//ft_push(stack_a, stack_b);
+	printf("\n");
+	printf("Stack A after\n");
+	printList(*stack_a);
+	//printf("\n");
+	//printf("Stack B after\n");
+	//printList(*stack_b);
 	return(0);	
 }

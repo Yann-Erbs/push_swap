@@ -6,7 +6,7 @@
 /*   By: yerbs <yerbs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 08:07:39 by yerbs             #+#    #+#             */
-/*   Updated: 2024/03/19 10:17:15 by yerbs            ###   ########.fr       */
+/*   Updated: 2024/03/20 09:56:17 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,11 @@ void	printList(t_stack *head)
 	tmp = head;
 	while (tmp != NULL)
 	{
+		ft_putstr_fd("Value : ", 1);
 		ft_putnbr_fd(tmp->value, 1);
-		ft_putchar_fd(' ', 1);
+		ft_putstr_fd(" | ", 1);
 		ft_putnbr_fd(tmp->index, 1);
+		ft_putstr_fd(" : Index", 1);
 		ft_putchar_fd('\n', 1);
 		tmp = tmp->next;
 	}
