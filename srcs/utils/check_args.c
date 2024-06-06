@@ -1,0 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_args.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yerbs <yerbs@student.42mulhouse.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/29 01:58:26 by yerbs             #+#    #+#             */
+/*   Updated: 2024/06/06 16:58:52 by yerbs            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/push_swap.h"
+
+static int	ft_isnum(char *num)
+{
+	int	i;
+
+	i = 0;
+	if (num[0] == '-' && num[1] != '\0')
+		i++;
+	while (num[i])
+	{
+		if (ft_isdigit(num[i]))
+			i++;
+		else
+		{
+			return (0);
+		}
+	}
+	return (1);
+}
+
+static int	repetition(char *number, char **av)
+{
+	int	i;
+	int	time;
+	int	nbr;
+
+	time = 0;
+	i = 1;
+	nbr = ft_atoi(number);
+	while (av[i])
+	{
+		if (nbr == ft_atoi(av[i]))
+			time++;
+		i++;
+	}
+	if (time > 1)
+		return (1);
+	return (0);
+}
+
+int	check_args(int ac, char **av)
+{
+	int		i;
+	long	tmp;
+
+	i = 0;
+	if (ac != 2)
+		i = 1;
+	while (av[i])
+	{
+		tmp = ft_atoi(av[i]);
+		if (!ft_isnum(av[i]))
+		{
+			return (0);
+		}
+		if (tmp < INT_MIN || tmp > INT_MAX)
+		{
+			return (0);
+		}
+		if (repetition(av[i], av))
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
