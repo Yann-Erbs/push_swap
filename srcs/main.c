@@ -6,7 +6,7 @@
 /*   By: yerbs <yerbs@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:11:11 by yerbs             #+#    #+#             */
-/*   Updated: 2024/06/06 16:20:23 by yerbs            ###   ########.fr       */
+/*   Updated: 2024/06/07 18:37:44 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ static void	free_av(int split_used, char	**av)
 	}
 }
 
-static void	sorting(t_stack	*stack_a, t_stack	*stack_b, char **av, int ac)
+static void	sorting(t_stack	**stack_a, t_stack	**stack_b, char **av, int ac)
 {
 	(void)ac;
 	(void)av;
-	if (!ft_is_sorted(&stack_a))
+	if (!ft_is_sorted(stack_a))
 	{
-		if (stack_len(stack_a) == 2)
-			sa(&stack_a);
+		if (stack_len(*stack_a) == 2)
+			sa(stack_a);
 		else
-			quick_sort(&stack_a, &stack_b);
+			quick_sort(stack_a, stack_b);
 	}
 }
 
@@ -86,7 +86,7 @@ int	main(int ac, char **av)
 		return (ft_error());
 	}
 	stack_init(&stack_a, av, ac);
-	sorting(stack_a, stack_b, av, ac);
+	sorting(&stack_a, &stack_b, av, ac);
 	free_av(split_used, av);
 	free_stack(&stack_a);
 	return (0);
