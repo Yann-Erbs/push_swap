@@ -6,7 +6,7 @@
 /*   By: yerbs <yerbs@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:58:26 by yerbs             #+#    #+#             */
-/*   Updated: 2024/06/06 16:58:52 by yerbs            ###   ########.fr       */
+/*   Updated: 2024/06/09 15:42:36 by yerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,16 @@ static int	ft_isnum(char *num)
 	return (1);
 }
 
-static int	repetition(char *number, char **av)
+static int	repetition(char *number, char **av, int ac)
 {
 	int	i;
 	int	time;
 	int	nbr;
 
 	time = 0;
-	i = 1;
+	i = 0;
+	if (ac != 2)
+		i = 1;
 	nbr = ft_atoi(number);
 	while (av[i])
 	{
@@ -62,15 +64,15 @@ int	check_args(int ac, char **av)
 	while (av[i])
 	{
 		tmp = ft_atoi(av[i]);
-		if (!ft_isnum(av[i]))
-		{
-			return (0);
-		}
 		if (tmp < INT_MIN || tmp > INT_MAX)
 		{
 			return (0);
 		}
-		if (repetition(av[i], av))
+		if (!ft_isnum(av[i]))
+		{
+			return (0);
+		}
+		if (repetition(av[i], av, ac))
 		{
 			return (0);
 		}

@@ -6,7 +6,7 @@
 #    By: yerbs <yerbs@student.42mulhouse.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 01:15:47 by yerbs             #+#    #+#              #
-#    Updated: 2024/06/06 16:00:31 by yerbs            ###   ########.fr        #
+#    Updated: 2024/06/08 16:35:08 by yerbs            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,17 +35,14 @@ NAME = push_swap
 
 all: ps ${NAME}
 
-ps:
-	@printf "${PINK} --- PUSH-SWAP ---\n"
-
-
 ${OBJDIR}%.o: %.c
 	@mkdir -p ${@D}
 	@printf "\r${GREEN}Compilation of $(CYAN)push_swap${RESET}..."
 	@${CC} ${CFLAGS} -c $< -o $@
 	${call progress_bar}
 
-
+ps:
+	@printf "${PINK} --- PUSH-SWAP ---\n"
 
 define color_progress
 $(if $(shell test $(1) -gt 66 && echo true),$(GREEN),$(if $(shell test $(1) -gt 33 && echo true),$(YELLOW),$(RED)))
