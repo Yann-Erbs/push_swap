@@ -6,7 +6,7 @@
 #    By: yerbs <yerbs@student.42mulhouse.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 01:15:47 by yerbs             #+#    #+#              #
-#    Updated: 2024/06/08 16:35:08 by yerbs            ###   ########.fr        #
+#    Updated: 2024/06/11 14:30:13 by yerbs            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,6 @@ ${OBJDIR}%.o: %.c
 	@${CC} ${CFLAGS} -c $< -o $@
 	${call progress_bar}
 
-ps:
-	@printf "${PINK} --- PUSH-SWAP ---\n"
 
 define color_progress
 $(if $(shell test $(1) -gt 66 && echo true),$(GREEN),$(if $(shell test $(1) -gt 33 && echo true),$(YELLOW),$(RED)))
@@ -71,6 +69,8 @@ clean:
 	@echo "$(RED)Deleting $(CYAN)${NAME} $(YELLOW)objs$(RESET) ✔️"
 	@${RM} ${OBJDIR}
 
+ps:
+	@printf "${PINK} --- PUSH-SWAP ---\n"
 
 fclean: clean
 	@${RM} libft.a
